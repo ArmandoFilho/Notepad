@@ -14,6 +14,13 @@ export default function Home() {
     setInputText("");
   };
 
+  const toggleNote = (index: number) => 
+  {
+    const updatedNotes = [...notes];
+    updatedNotes[index].done = !updatedNotes[index].done;
+    setNotes(updatedNotes);
+  };
+
   return (
     
     <div className="flex justify-center items-center h-screen flex-col">
@@ -23,7 +30,10 @@ export default function Home() {
       <div className="notes-container">
       {
         notes.map((note, index) => (
-        <div key={index} className="note">{note.text}</div>))
+        <div key={index} className={`note ${note.done ? "done" : ""}`}>
+        <span>{note.text}</span>
+        <input type="checkbox" checked={note.done} onChange={() => toggleNote(index)} className="checkbox"/>
+        </div>))
       }
       </div>
     </div>
