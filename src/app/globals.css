@@ -45,12 +45,31 @@ input{
   flex-direction: row;
   flex-wrap: wrap;
   gap: 10px;
+  justify-content: flex-start;
 }
 
 .note {
-  background-color: #ffffff;
-  border: 2px solid rgb(43, 41, 41);
-  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;   
+  padding: 8px 12px;
   border-radius: 5px;
-  word-wrap: break-word;
+  border: 2px solid black;
+  background: white;
+  min-width: 200px;              
+  max-width: 400px;
+  gap: 12px;
+}
+
+.note span {
+  word-break: break-word;
+}
+
+.note.done span {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.checkbox {
+  cursor: pointer;
 }
