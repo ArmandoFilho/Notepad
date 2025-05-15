@@ -73,3 +73,12 @@ input{
   cursor: pointer;
   max-width: 10px;
 }
+
+.edit-input {
+  padding: 8px;
+  border-radius: 4px;
+  border: 2px solid rgb(43, 41, 41);
+  background-color: whitesmoke;
+  width: 15rem;
+  font-size: 16px;
+}
