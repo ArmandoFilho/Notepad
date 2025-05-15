@@ -9,7 +9,7 @@ export default function Home() {
   
   const handleAddNote = () => 
   {
-    const newNote: Note = { text: inputText };
+    const newNote: Note = { text: inputText, done:false };
     setNotes([...notes, newNote]);
     setInputText("");
   };

@@ -55,8 +55,7 @@ input{
   padding: 8px 12px;
   border-radius: 5px;
   border: 2px solid black;
-  background: white;
-  min-width: 200px;              
+  background: white;            
   max-width: 400px;
   gap: 12px;
 }
@@ -72,4 +71,5 @@ input{
 
 .checkbox {
   cursor: pointer;
+  max-width: 10px;
 }
