@@ -1,12 +1,10 @@
 "use client"
 import React, { useState } from "react";
-import { Note } from "@/app/components/notes";
+import { Note, Notes } from "@/app/components/notes";
 
 export default function Home() {
   const [notes, setNotes] = useState<Note[]>([]);
   const [inputText, setInputText] = useState("");
-  const [editIndex, setEditIndex] = useState<number | null>(null);
-  const [editText, setEditText] = useState("");
 
   const handleAddNote = () => 
   {
@@ -22,19 +20,11 @@ export default function Home() {
     setNotes(updatedNotes);
   };
 
-  const handleEdit = (index: number) => 
-  {
-    setEditIndex(index);
-    setEditText(notes[index].text);
-  };
-
-  const handleSaveEdit = (index: number) => 
+  const updateNoteText = (index: number, newText: string) => 
   {
     const updatedNotes = [...notes];
-    updatedNotes[index].text = editText;
+    updatedNotes[index].text = newText;
     setNotes(updatedNotes);
-    setEditIndex(null);
-    setEditText("");
   };
 
   return (
@@ -42,30 +32,7 @@ export default function Home() {
       <p className="text-[30px]"> Notepad</p>
       <input type="text" placeholder="Write your note" value={inputText} onChange={(e) => setInputText(e.target.value)}/>
       <button className="mt-4" onClick={handleAddNote}>New note</button>  
-      <div className="notes-container">
-        {notes.map((note, index) => (
-          <div key={index} className={`note ${note.done ? "done" : ""}`}>
-            {editIndex === index ? (
-              <>
-                <input
-                  type="text"
-                  value={editText}
-                  onChange={(e) => setEditText(e.target.value)}
-                  className="edit-input"
-                />
-                <button onClick={() => handleSaveEdit(index)}>Save</button>
-              </>
-            ) : (
-              <>
-                <span>{note.text}</span>
-                <input type="checkbox" checked={note.done} onChange={() => toggleNote(index)} className="checkbox"/>
-                <button onClick={() => handleEdit(index)}>Edit</button>
-              </>
-            )}
-          </div>
-        ))}
-      </div>
+      <Notes notes={notes} toggleNote={toggleNote} updateNoteText={updateNoteText}/>
     </div>
   );
 }
-
